@@ -73,28 +73,38 @@
 			<h1>{{blog.title}}</h1>
 			<div class="header-detail">
 				<div class="left-header">
-					<img src="/images/project.jpeg" alt="detail" />
+					<img src="{{this.images}}" alt="detail" />
 				</div>
 				<div class="right-header">
 					<div class="duration">
-						<h2>Duration</h2>
-						<p><i class="bx bxs-calendar"></i>12 Jan 2021 - 11 Feb 2021</p>
+						<h2>{{blog.duration}}</h2>
+						<p><i class="bx bxs-calendar"></i>{{blog.startDate}}
+							-
+							{{blog.endDate}}</p>
 
-						<p><i class="bx bx-time-five"></i>1 month</p>
+						<p><i class="bx bx-time-five"></i>{{blog.duration}}</p>
 					</div>
 					<div class="technologi">
 						<h2>Technologies</h2>
 						<div class="icon">
 							<div>
-								<p>
-									<i class="bx bxl-nodejs"></i>
-									Node Js
-								</p>
-								<p><i class="bx bxl-react"></i>React Js</p>
+								{{#if blog.nodejs}}
+									<p>
+										<i class="bx bxl-nodejs"></i>
+										Node Js
+									</p>
+								{{/if}}
+								{{#if blog.reactjs}}
+									<p><i class="bx bxl-react"></i>React Js</p>
+								{{/if}}
 							</div>
 							<div>
-								<p><i class="bx bxl-typescript"></i>Typescript</p>
-								<p><i class="bx bxl-javascript"></i>Javascript</p>
+								{{#if blog.typescript}}
+									<p><i class="bx bxl-typescript"></i>Typescript</p>
+								{{/if}}
+								{{#if blog.nextjs}}
+									<p><i class="fa-brands fa-square-js"></i>Next Js</p>
+								{{/if}}
 							</div>
 						</div>
 					</div>

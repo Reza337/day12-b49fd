@@ -47,6 +47,7 @@
 							<input
 								type="date"
 								name="startDate"
+								value="{{blog.startDate}}"
 								class="form-control shadow-sm"
 								id="input-blog-startDate"
 							/>
@@ -57,6 +58,7 @@
 								type="date"
 								class="form-control shadow-sm"
 								name="endDate"
+								value="{{blog.endDate}}"
 								id="input-blog-endDate"
 							/>
 						</div>
@@ -85,6 +87,7 @@
 										class="form-check-input"
 										type="checkbox"
 										value="nodejs"
+										name="nodejs"
 										id="checkbox-nodejs"
 									/>
 									<label
@@ -97,6 +100,7 @@
 										class="form-check-input"
 										type="checkbox"
 										value="reactjs"
+										name="reactjs"
 										id="checkbox-reactjs"
 									/>
 									<label
@@ -111,6 +115,7 @@
 										class="form-check-input"
 										type="checkbox"
 										value="nextjs"
+										name="nextjs"
 										id="checkbox-nextjs"
 									/>
 									<label
@@ -123,6 +128,7 @@
 										class="form-check-input"
 										type="checkbox"
 										value="typescript"
+										name="typescript"
 										id="checkbox-typescript"
 									/>
 									<label
@@ -139,6 +145,8 @@
 							class="form-control"
 							name="images"
 							type="file"
+							placeholder="{{blog.images}}"
+							value="{{blog.images}}"
 							id="formFile"
 						/>
 					</div>

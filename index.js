@@ -9,6 +9,8 @@ app.set("views", path.join(__dirname, "src/views"));
 
 // set serving static file
 app.use(express.static(path.join(__dirname, "src/assets")));
+// set serving static file specific
+app.use(express.static(path.join(__dirname, "src/assets/images")));
 
 // parsing data
 app.use(express.urlencoded({ extended: false }));
@@ -20,30 +22,65 @@ const dataBlog = [
 		content:
 			"App that used for dumbways student, it was deployed and can downloaded on playstore. Happy download",
 		images: "/images/project.jpeg",
+		startDate: "2023-08-01",
+		endDate: "2023-09-01",
+		duration: "3 Bulan",
+		nodejs: true,
+		reactjs: true,
+		nextjs: true,
+		typescript: true,
 	},
 	{
 		title: "Dumbways Mobile App - 2021",
 		content:
 			"App that used for dumbways student, it was deployed and can downloaded on playstore. Happy download",
 		images: "/images/project.jpeg",
+		startDate: "2023-08-01",
+		endDate: "2023-09-01",
+		duration: "3 Bulan",
+		nodejs: true,
+		reactjs: true,
+		nextjs: true,
+		typescript: true,
 	},
 	{
 		title: "Dumbways Mobile App - 2021",
 		content:
 			"App that used for dumbways student, it was deployed and can downloaded on playstore. Happy download",
 		images: "/images/project.jpeg",
+		startDate: "2023-08-01",
+		endDate: "2023-09-01",
+		duration: "3 Bulan",
+		nodejs: true,
+		reactjs: true,
+		nextjs: true,
+		typescript: true,
 	},
 	{
 		title: "Dumbways Mobile App - 2021",
 		content:
 			"App that used for dumbways student, it was deployed and can downloaded on playstore. Happy download",
 		images: "/images/project.jpeg",
+		startDate: "2023-08-01",
+		endDate: "2023-09-01",
+		duration: "3 Bulan",
+		nodejs: true,
+		reactjs: true,
+		nextjs: true,
+		typescript: true,
 	},
 	{
 		title: "Dumbways Mobile App - 2021",
 		content:
 			"App that used for dumbways student, it was deployed and can downloaded on playstore. Happy download",
 		images: "/images/project.jpeg",
+		startDate: "2023-08-01",
+		endDate: "2023-09-01",
+		duration: "3 Bulan",
+		nodejs: true,
+		reactjs: true,
+		nextjs: true,
+		typescript: true,
 	},
 ];
 
@@ -76,7 +113,44 @@ function blog(req, res) {
 
 // add a new blog
 function addBlog(req, res) {
-	const { title, startDate, endDate, content, images } = req.body;
+	const {
+		title,
+		startDate,
+		endDate,
+		content,
+		images,
+		nodejs,
+		reactjs,
+		nextjs,
+		typescript,
+	} = req.body;
+
+	let start = new Date(startDate);
+	let end = new Date(endDate);
+
+	if (start > end) {
+		return console.log("You Fill End Date Before Start Date");
+	}
+
+	let difference = end.getTime() - start.getTime();
+	let days = difference / (1000 * 3600 * 24);
+	let weeks = Math.floor(days / 7);
+	let months = Math.floor(weeks / 4);
+	let years = Math.floor(months / 12);
+	let duration = "";
+
+	if (days > 0) {
+		duration = days + " Hari";
+	}
+	if (weeks > 0) {
+		duration = weeks + " Minggu";
+	}
+	if (months > 0) {
+		duration = months + " Bulan";
+	}
+	if (years > 0) {
+		duration = years + " Tahun";
+	}
 
 	const data = {
 		title,
@@ -84,6 +158,11 @@ function addBlog(req, res) {
 		images,
 		startDate,
 		endDate,
+		duration,
+		nodejs,
+		reactjs,
+		nextjs,
+		typescript,
 	};
 
 	dataBlog.push(data);
@@ -99,10 +178,55 @@ function editBlog(req, res) {
 // update blog
 function updateBlog(req, res) {
 	const blogIndex = parseInt(req.body.blogIndex);
-	const { title, content } = req.body;
+	const {
+		title,
+		startDate,
+		endDate,
+		content,
+		images,
+		nodejs,
+		reactjs,
+		nextjs,
+		typescript,
+	} = req.body;
+
+	let start = new Date(startDate);
+	let end = new Date(endDate);
+
+	if (start > end) {
+		return console.log("You Fill End Date Before Start Date");
+	}
+
+	let difference = end.getTime() - start.getTime();
+	let days = difference / (1000 * 3600 * 24);
+	let weeks = Math.floor(days / 7);
+	let months = Math.floor(weeks / 4);
+	let years = Math.floor(months / 12);
+	let duration = "";
+
+	if (days > 0) {
+		duration = days + " Hari";
+	}
+	if (weeks > 0) {
+		duration = weeks + " Minggu";
+	}
+	if (months > 0) {
+		duration = months + " Bulan";
+	}
+	if (years > 0) {
+		duration = years + " Tahun";
+	}
 
 	dataBlog[blogIndex].title = title;
+	dataBlog[blogIndex].startDate = startDate;
+	dataBlog[blogIndex].endDate = endDate;
 	dataBlog[blogIndex].content = content;
+	dataBlog[blogIndex].images = images;
+	dataBlog[blogIndex].duration = duration;
+	dataBlog[blogIndex].nodejs = nodejs;
+	dataBlog[blogIndex].reactjs = reactjs;
+	dataBlog[blogIndex].nextjs = nextjs;
+	dataBlog[blogIndex].typescript = typescript;
 
 	res.redirect("/");
 }
